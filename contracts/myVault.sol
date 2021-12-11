@@ -192,9 +192,9 @@ contract myVault {
         }
     }
 
-    receive() public {
+    receive() external payable {
         // Accept ETH, do nothing as it would break the gas fee for a transaction. 
-    };
+    }
 
     function wrapETH() public {
         require(msg.sender == owner, 'Only the owner can convert ETH to WETH');
@@ -206,5 +206,5 @@ contract myVault {
         wethToken.deposit{ 
             value: ethBalance
         } ();
-    };
-};
+    }
+}
