@@ -169,6 +169,42 @@ contract myVault {
         }
     }
 
+    // 3 minute time period
+    function annualDividend() public {
+        require(msg.sender == owner, 'Only the owner can drawdown their account');
+        require(block.timestamp > nextDividendTS, 'Dividend is not yet due');
+        uint balance = getDaiBalance();
+        uint amount = (balance * usdDividendPercentage) / 100; 
+        nextDividendTS = block.timestamp + dividendFrequency; 
+        daiToken.safeTransfer(owner, amount); // Part of open zepellin library
+    }
 
+    // Optional, removes entire weth and dai balances from accounts:
+    function closeAccount() public {
+        require(msg.sender == owner, 'Only the owner can close their account');
+        uint daiBalance = getDaiBalance();
+        if (daiBalance > 0) {
+            daiToken.safeTransfer(owner, daiBalance);
+        }
+        uint wethBalance = getWethBalance();
+        if (wethBalance > 0) {
+            wethToken.safeTransfer(owner, wethBalance);
+        }
+    }
 
-}
+    receive() public {
+        // Accept ETH, do nothing as it would break the gas fee for a transaction. 
+    };
+
+    function wrapETH() public {
+        require(msg.sender == owner, 'Only the owner can convert ETH to WETH');
+        uint ethBalance = address(this).balance;
+        
+        require(ethBalance > 0, "No ETH available to wrap");
+        emit myVaultLog('wrap ETH', ethBalance);
+
+        wethToken.deposit{ 
+            value: ethBalance
+        } ();
+    };
+};
