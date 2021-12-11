@@ -2,7 +2,7 @@ require("@nomiclabs/hardhat-waffle");
 
 require('dotenv').config()
 
-const ethersanCredentials = ""
+const etherscanCredentials = ""
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -33,6 +33,6 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: ethersanCredentials
+    apiKey: etherscanCredentials
   }
 };
