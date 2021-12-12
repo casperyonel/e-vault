@@ -1,17 +1,27 @@
-//  const hre = require("hardhat");
+const hre = require('hardhat');
+const fs = require('fs');
+
 
 async function main() {
- 
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
-  await greeter.deployed();
-  console.log("Greeter deployed to:", greeter.address);
 
-  const myVault = await hre.ethers.getContractFactory("myVault");
-  const myvault = await myVault.deploy();
-  await myvault.deployed();
-  console.log("MyVault deployed as: ", myvault.address);
+  const MyVault = await hre.ethers.getContractFactory("myVault");
+  const myVault = await MyVault.deploy();
+    // Passing in the constructor since we need an argument.  
+  await myVault.deployed();
+  console.log("Vault deployed to: ", myVault.address);
+
+
+
+
+
+  // const contractName = 'myVault';
+  // await hre.run("compile");
+  // const smartContract = await hre.ethers.getContractFactory(contractName);
+  // const myVault = await smartContract.deploy();
+  // await myVault.deployed();
+  // console.log(`${contractName} deployed to: ${myVault.address}`);
 }
+
  
 main()
   .then(() => process.exit(0))

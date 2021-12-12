@@ -197,14 +197,10 @@ contract myVault {
     }
 
     function wrapETH() public {
-        require(msg.sender == owner, 'Only the owner can convert ETH to WETH');
-        uint ethBalance = address(this).balance;
-        
-        require(ethBalance > 0, "No ETH available to wrap");
-        emit myVaultLog('wrap ETH', ethBalance);
-
-        wethToken.deposit{ 
-            value: ethBalance
-        } ();
-    }
+    require(msg.sender == owner, "Only the owner can convert ETH to WETH");
+    uint ethBalance = address(this).balance;
+    require(ethBalance > 0, "No ETH available to wrap");
+    emit myVaultLog('wrapETH', ethBalance);
+    wethToken.deposit{ value: ethBalance }();
+  }
 }

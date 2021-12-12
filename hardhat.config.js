@@ -30,11 +30,12 @@ module.exports = {
     // },
     localhost: {
       chainId: 31337
-    }
-    // kovan: {
-    //   url: "https://kovan.infura.io/v3/ac0cd7c9376a432bb2d2836d66bcc22f",
-    //   accounts: [`0x${process.env.PRIVATE_KEY}`]
+    },
+    kovan: {
+      url: "https://kovan.infura.io/v3/c765fea966964da58dacb7a38ddf910c",
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
     },
   }
   // etherscan: {
   //   apiKey: etherscanCredentials
+}
