@@ -1,4 +1,6 @@
- const { ethers } = require("hardhat");
+// import "hardhat/console.sol";
+
+const { ethers } = require("hardhat");
 const assert = require('chai').assert;
 const hre = require('hardhat')
 
@@ -21,8 +23,9 @@ describe('myVault', () => {
 
     it('Should return zero DAI balance', async () => {
         const daiBalance = await myVault.getDaiBalance();
+        console.log(daiBalance)
         assert.equal(daiBalance,0);
-      }); 
+      }); // FAILING
     
     it('Should Rebalance The Portfolio ', async () => {
         const accounts = await hre.ethers.getSigners();
@@ -38,6 +41,6 @@ describe('myVault', () => {
         const daiBalance = await myVault.getDaiBalance();
         console.log('Rebalanced DAI Balance',daiBalance.toString());
         assert.isAbove(daiBalance,0);
-      });
+      }); // FAILING
     
 });

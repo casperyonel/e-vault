@@ -24,16 +24,17 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   solidity: "0.8.4",
   networks: {
-    local: {
-      url: "http://127.0.0.1:8545/",
-      accounts: [`0x${process.env.PRIVATE_KEY}`]
+    // hardhat: {
+    //   url: "http://127.0.0.1:8545/",
+    //   accounts: [`0x${process.env.PRIVATE_KEY}`]
+    // },
+    localhost: {
+      chainId: 31337
+    }
+    // kovan: {
+    //   url: "https://kovan.infura.io/v3/ac0cd7c9376a432bb2d2836d66bcc22f",
+    //   accounts: [`0x${process.env.PRIVATE_KEY}`]
     },
-    kovan: {
-      url: "https://kovan.infura.io/v3/ac0cd7c9376a432bb2d2836d66bcc22f",
-      accounts: [`0x${process.env.PRIVATE_KEY}`]
-    },
-  },
-  etherscan: {
-    apiKey: etherscanCredentials
   }
-};
+  // etherscan: {
+  //   apiKey: etherscanCredentials
